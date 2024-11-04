@@ -4,6 +4,7 @@ import com.yosra.jwt.backend.dtos.FinancialDataDto;
 import com.yosra.jwt.backend.entites.FinancialData;
 import com.yosra.jwt.backend.services.FinancialDataService;
 //import com.yosra.jwt.backend.services.ModelArtService;
+import com.yosra.jwt.backend.services.FlaskPredictionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,11 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200") // Adjust the origin as per your Angular app's URL
 public class FinancialDataController {
 
+
     @Autowired
     private FinancialDataService financialDataService;
+    @Autowired
+    private FlaskPredictionService flaskPredictionService;
 //    @Autowired
 //    private ModelArtService modelArtService;
 
@@ -42,13 +46,16 @@ public class FinancialDataController {
 //    }
 @PostMapping("/create")
 public ResponseEntity<String> createFinancialData(@RequestBody FinancialDataDto financialDataDto) {
-    // Save the financial data
+    // Save the financial data (including prediction)
     FinancialData savedFinancialData = financialDataService.createFinancialData(financialDataDto);
+    savedFinancialData.setPrediction(flaskPredictionService.getPrediction(financialDataDto));
 
-    // Return the response with just the accession number, without the model score
+
+    // Return the response with the prediction already saved in the entity
     return ResponseEntity.ok("Financial Data Created Successfully with Accession Number: "
-            + savedFinancialData.getAccessionNo());
+            + savedFinancialData.getAccessionNo() + ". Prediction: " + savedFinancialData.getPrediction());
 }
+
 
     // Get financial data by accession number (GET /api/financial-data/{accessionNo})
     @GetMapping("/{accessionNo}")

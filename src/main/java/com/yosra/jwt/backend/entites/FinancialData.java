@@ -56,6 +56,7 @@ public class FinancialData implements Serializable {
     private Double shortTermDebt;
     private Double longTermDebt;
     private Double noncurrentLiabilities;
+    private Double prediction;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", nullable = false)

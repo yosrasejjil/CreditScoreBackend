@@ -4,6 +4,7 @@ com\yosra\jwt\backend\entites\FinancialData.class
 com\yosra\jwt\backend\entites\User.class
 com\yosra\jwt\backend\repositories\FinancialDataRepository.class
 com\yosra\jwt\backend\controllers\MessagesController.class
+com\yosra\jwt\backend\services\FlaskPredictionService.class
 com\yosra\jwt\backend\controllers\FinancialDataController.class
 com\yosra\jwt\backend\dtos\CredentialsDto.class
 com\yosra\jwt\backend\dtos\SignUpDto.class

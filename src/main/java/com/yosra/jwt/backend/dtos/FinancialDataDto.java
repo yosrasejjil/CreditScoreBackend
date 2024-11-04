@@ -51,6 +51,7 @@ import java.util.Date;
         private Double shortTermDebt;
         private Double longTermDebt;
         private Double noncurrentLiabilities;
+        private Double prediction;
 
 
     }

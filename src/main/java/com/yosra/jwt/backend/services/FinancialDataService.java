@@ -20,7 +20,8 @@ public class FinancialDataService {
     @Autowired
     private UserRepository userRepository;
 
-    // Create financial data with associated User
+
+    // Create financial data with associated User and prediction
     public FinancialData createFinancialData(FinancialDataDto financialDataDto) {
         FinancialData financialData = new FinancialData();
 
@@ -40,10 +41,10 @@ public class FinancialDataService {
         // Associate the User with FinancialData
         financialData.setUser(user);
 
-        // Save and return the FinancialData entity
+
+        // Save and return the FinancialData entity with prediction
         return financialDataRepository.save(financialData);
     }
-
     // Retrieve financial data by accession number
     public Optional<FinancialData> getFinancialData(String accessionNo) {
         return financialDataRepository.findById(accessionNo);
@@ -108,5 +109,7 @@ public class FinancialDataService {
         financialData.setShortTermDebt(financialDataDto.getShortTermDebt());
         financialData.setLongTermDebt(financialDataDto.getLongTermDebt());
         financialData.setNoncurrentLiabilities(financialDataDto.getNoncurrentLiabilities());
+        financialData.setPrediction(financialDataDto.getPrediction()); // Set the prediction
+
     }
 }
